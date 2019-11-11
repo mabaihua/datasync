@@ -1,5 +1,6 @@
 package com.ntu.datasync;
 
+import com.ntu.datasync.sync.CenterSync;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
