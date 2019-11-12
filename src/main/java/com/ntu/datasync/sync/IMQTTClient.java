@@ -1,11 +1,12 @@
 package com.ntu.datasync.sync;
 
-import com.ntu.datasync.config.SysConfig;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author: baihua
  * @Date: Created in 11/11/2019 10:23 AM
  */
+@Component
 public interface IMQTTClient {
     public void connect();
 

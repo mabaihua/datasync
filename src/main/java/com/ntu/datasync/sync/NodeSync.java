@@ -2,9 +2,9 @@ package com.ntu.datasync.sync;
 
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
+import com.ntu.datasync.dao.BookMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 /**
  * @Author: baihua
@@ -12,8 +12,8 @@ import java.io.IOException;
  */
 @Component
 public class NodeSync {
-    private MoquetteServer moquetteServer = null;
-
+    @Autowired
+    BookMapper bookMapper;
 
     public void start(MoquetteServer moquetteServer){
 
@@ -22,5 +22,6 @@ public class NodeSync {
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());
         imqttClient.connect();
         imqttClient.publish("/sync/test","message sender".getBytes(),false);
+        System.out.println("node: "+bookMapper.findAll());
     }
 }

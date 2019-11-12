@@ -1,6 +1,7 @@
 package com.ntu.datasync;
 
 import com.ntu.datasync.config.MoquetteServer;
+import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.sync.CenterSync;
 import com.ntu.datasync.sync.NodeSync;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,12 @@ public class ServerStart implements ApplicationListener<ContextRefreshedEvent> {
     private CenterSync centerSync;
     @Autowired
     private NodeSync nodeSync;
+
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         try {
             moquetteServer.startServer();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

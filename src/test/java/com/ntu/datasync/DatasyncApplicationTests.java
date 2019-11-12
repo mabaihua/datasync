@@ -20,11 +20,7 @@ class DatasyncApplicationTests {
 	private NodeSync nodeSync;
 	@Test
 	void contextLoads() throws IOException, InterruptedException {
-		centerSync.start(moquetteServer);
-		nodeSync.start(moquetteServer);
 
-		Thread.sleep(60000);
-		moquetteServer.stop();
 	}
 
 }

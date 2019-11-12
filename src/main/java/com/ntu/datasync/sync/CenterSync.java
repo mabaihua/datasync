@@ -1,17 +1,10 @@
 package com.ntu.datasync.sync;
 
-import com.ntu.datasync.DatasyncApplication;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
+import com.ntu.datasync.dao.BookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import sun.plugin2.message.Message;
-
-import java.io.IOException;
 
 /**
  * @Author: baihua
@@ -21,7 +14,8 @@ import java.io.IOException;
 public class CenterSync {
 
     private MoquetteServer moquetteServer = null;
-
+  /*  @Autowired
+    BookMapper bookMapper;*/
 
     public void start(MoquetteServer moquetteServer){
 
@@ -32,6 +26,8 @@ public class CenterSync {
 
         imqttClient.connect();
         imqttClient.subscribe("/sync/test");
+
+        //System.out.println("center "+ bookMapper.findAll());
 
 
     }

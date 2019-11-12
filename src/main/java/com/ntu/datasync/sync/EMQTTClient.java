@@ -1,25 +1,30 @@
 package com.ntu.datasync.sync;
 
 import com.ntu.datasync.config.SysConfig;
-import io.netty.handler.codec.mqtt.MqttQoS;
+import lombok.NoArgsConstructor;
 import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import sun.plugin2.message.Message;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 
 /**
  * @Author: baihua
  * @Date: Created in 11/11/2019 10:30 AM
  */
+@NoArgsConstructor
+@Component
 public class EMQTTClient implements IMQTTClient {
-
-    private SysConfig sysConfig = new SysConfig();
     private static final Logger LOG = LoggerFactory.getLogger(EMQTTClient.class);
     private static final boolean CLEAN_START = true;
     private static final short KEEP_ALIVE = 30;
     private static final long RECONNECTION_DELAY = 5000;
+
+
+    private SysConfig sysConfig = new SysConfig();
+
     private MqttClient mqttClient= null;
     private String clientid = null;
     private String username = null;
