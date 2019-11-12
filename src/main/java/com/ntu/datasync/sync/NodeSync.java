@@ -16,11 +16,7 @@ public class NodeSync {
 
 
     public void start(MoquetteServer moquetteServer){
-   /*     try{
-            moquetteServer.startServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
 
         SysConfig sysConfig = new SysConfig();
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());

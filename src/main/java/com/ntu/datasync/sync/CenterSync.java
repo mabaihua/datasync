@@ -24,11 +24,8 @@ public class CenterSync {
 
 
     public void start(MoquetteServer moquetteServer){
-        try{
-            moquetteServer.startServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
         SysConfig sysConfig = new SysConfig();
         sysConfig.setClintid("center");
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());
