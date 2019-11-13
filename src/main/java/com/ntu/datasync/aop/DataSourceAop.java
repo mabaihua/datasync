@@ -1,8 +1,11 @@
 package com.ntu.datasync.aop;
 
 import com.ntu.datasync.config.DataSourceType;
+import com.ntu.datasync.sync.NodeSync;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,17 +15,19 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class DataSourceAop {
+    private static final Logger logger = LoggerFactory.getLogger(DataSourceAop.class);
+
     //在primary方法前执行
     @Before("execution(* com.ntu.datasync.sync.CenterSync.start(..))")
     public void setDataSource2test01() {
-        System.out.println("Center业务");
-        //DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Primary);
+        logger.info("Center业务");
+        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Primary);
     }
 
     //在secondary方法前执行
     @Before("execution(* com.ntu.datasync.sync.NodeSync.start(..))")
     public void setDataSource2test02() {
-        System.out.println("Node业务");
-       // DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Secondary);
+        logger.info("Node业务");
+        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Secondary);
     }
 }

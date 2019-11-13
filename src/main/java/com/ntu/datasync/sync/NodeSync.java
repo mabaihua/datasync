@@ -3,6 +3,8 @@ package com.ntu.datasync.sync;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.dao.BookMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class NodeSync {
+
+    private static final Logger logger = LoggerFactory.getLogger(NodeSync.class);
     @Autowired
     BookMapper bookMapper;
 
@@ -22,6 +26,6 @@ public class NodeSync {
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());
         imqttClient.connect();
         imqttClient.publish("/sync/test","message sender".getBytes(),false);
-        System.out.println("node: "+bookMapper.findAll());
+        logger.info("node: "+bookMapper.findAll());
     }
 }

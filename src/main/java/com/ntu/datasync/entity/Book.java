@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class Book {
 
-    private Integer bookId;
-    private String bookName;
+    private Integer book_id;
+    private String book_name;
 }
 

@@ -3,6 +3,8 @@ package com.ntu.datasync.sync;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.dao.BookMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CenterSync {
+    private static final Logger logger = LoggerFactory.getLogger(CenterSync.class);
 
     private MoquetteServer moquetteServer = null;
     @Autowired
@@ -27,7 +30,7 @@ public class CenterSync {
         imqttClient.connect();
         imqttClient.subscribe("/sync/test");
 
-        System.out.println("center "+ bookMapper.findAll());
+        logger.info("center "+ bookMapper.findAll());
 
 
     }

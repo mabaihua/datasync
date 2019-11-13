@@ -3,6 +3,8 @@ package com.ntu.datasync.sync;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,20 +13,22 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class PushCallback implements MqttCallback {
+    private static final Logger logger = LoggerFactory.getLogger(PushCallback.class);
+
     @Override
     public void connectionLost(Throwable throwable) {
-        System.out.println("连接断开-----------");
+        logger.info("连接断开-----------");
     }
 
     @Override
     public void messageArrived(String topic, MqttMessage message) throws Exception {
-        System.out.println("收到的主题： "+topic);
-        System.out.println("接收消息内容： "+new String(message.getPayload()));
-        System.out.println("接收消息Qos： "+message.getQos());
+        logger.info("收到的主题： "+topic);
+        logger.info("接收消息内容： "+new String(message.getPayload()));
+        logger.info("接收消息Qos： "+message.getQos());
     }
 
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
-        System.out.println("deliveryComplete---------"+token.isComplete());
+        logger.info("deliveryComplete---------"+token.isComplete());
     }
 }
