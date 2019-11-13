@@ -3,6 +3,6 @@
 <mapper namespace="com.ntu.datasync.dao.BookMapper">
 
     <select id="findAll" resultType="com.ntu.datasync.entity.Book">
-        select * from book
+        select book_id,book_name from book
     </select>
 </mapper>

@@ -14,8 +14,8 @@ import org.springframework.stereotype.Component;
 public class CenterSync {
 
     private MoquetteServer moquetteServer = null;
-  /*  @Autowired
-    BookMapper bookMapper;*/
+    @Autowired
+    BookMapper bookMapper;
 
     public void start(MoquetteServer moquetteServer){
 
@@ -27,7 +27,7 @@ public class CenterSync {
         imqttClient.connect();
         imqttClient.subscribe("/sync/test");
 
-        //System.out.println("center "+ bookMapper.findAll());
+        System.out.println("center "+ bookMapper.findAll());
 
 
     }
