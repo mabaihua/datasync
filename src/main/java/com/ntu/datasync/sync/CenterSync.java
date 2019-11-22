@@ -22,7 +22,7 @@ public class CenterSync {
 
 
     
-    public void start(MoquetteServer moquetteServer1){
+    public void start(MoquetteServer moquetteServer){
 
 
         SysConfig sysConfig = new SysConfig();
