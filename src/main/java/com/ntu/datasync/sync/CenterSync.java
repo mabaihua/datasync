@@ -32,7 +32,6 @@ public class CenterSync {
 
         logger.info("center "+ bookMapper.findAll());
 
-
         
     }
 
