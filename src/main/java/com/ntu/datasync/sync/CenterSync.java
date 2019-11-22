@@ -20,7 +20,6 @@ public class CenterSync {
     @Autowired
     BookMapper bookMapper;
 
-
     
     public void start(MoquetteServer moquetteServer){
 
@@ -34,6 +33,8 @@ public class CenterSync {
 
         logger.info("center:"+ bookMapper.findAll());
 
+
+        
 
         
     }
