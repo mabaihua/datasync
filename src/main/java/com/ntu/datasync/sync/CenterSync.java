@@ -32,7 +32,7 @@ public class CenterSync {
         imqttClient.connect();
         imqttClient.subscribe("/sync/test");
 
-        logger.info("center: "+ bookMapper.findAll());
+        logger.info("center "+ bookMapper.findAll());
 
 
         
