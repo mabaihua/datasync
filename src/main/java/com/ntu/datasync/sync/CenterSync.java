@@ -20,7 +20,6 @@ public class CenterSync {
     @Autowired
     BookMapper bookMapper;
 
-
     
     public void start(MoquetteServer moquetteServer){
 
