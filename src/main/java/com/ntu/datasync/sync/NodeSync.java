@@ -25,7 +25,7 @@ public class NodeSync {
         SysConfig sysConfig = new SysConfig();
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());
         imqttClient.connect();
-        imqttClient.publish("/sync/test","message sender".getBytes(),false);
+        imqttClient.publish("/sync/test",bookMapper.findAll().toString().getBytes(),false);
         logger.info("node: "+bookMapper.findAll());
     }
 }
