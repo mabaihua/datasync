@@ -1,4 +1,4 @@
-package com.ntu.datasync.entity;
+package com.ntu.datasync.common;
 
 /**
  * @Author: baihua

@@ -1,10 +1,14 @@
-package com.ntu.datasync.sync;
+package com.ntu.datasync.common;
+
+import com.ntu.datasync.model.SyncMessage;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+@Component
 public class MsgSerializer {
 	
 	public byte[] encode(SyncMessage obj) {

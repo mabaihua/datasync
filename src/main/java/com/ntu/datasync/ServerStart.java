@@ -4,6 +4,8 @@ import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.sync.CenterSync;
 import com.ntu.datasync.sync.NodeSync;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -23,6 +25,7 @@ public class ServerStart implements ApplicationListener<ContextRefreshedEvent> {
     private CenterSync centerSync;
     @Autowired
     private NodeSync nodeSync;
+    private static final Logger logger = LoggerFactory.getLogger(ServerStart.class);
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -40,7 +43,7 @@ public class ServerStart implements ApplicationListener<ContextRefreshedEvent> {
             @Override
             public void run() {
                 moquetteServer.stop();
-                System.out.println("Moquette Server stopped");
+                logger.info("Moquette Server stopped");
             }
         });
 

@@ -1,6 +1,6 @@
 package com.ntu.datasync.dao;
 
-import com.ntu.datasync.entity.Book;
+import com.ntu.datasync.model.po.Book;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

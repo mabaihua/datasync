@@ -1,4 +1,4 @@
-package com.ntu.datasync.entity;
+package com.ntu.datasync.model.po;
 
 import lombok.Getter;
 import lombok.ToString;

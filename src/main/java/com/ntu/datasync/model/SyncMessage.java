@@ -1,6 +1,6 @@
-package com.ntu.datasync.sync;
+package com.ntu.datasync.model;
 
-import com.ntu.datasync.entity.DataSynchro;
+import com.ntu.datasync.model.po.DataSynchro;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
