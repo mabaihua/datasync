@@ -1,5 +1,7 @@
 package com.ntu.datasync.sync;
 
+import com.ntu.datasync.common.ApplicationContextProvider;
+import com.ntu.datasync.config.DataSourceType;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.dao.BookMapper;
@@ -20,6 +22,9 @@ public class CenterSync {
     @Autowired
     BookMapper bookMapper;
 
+    @Autowired
+    ApplicationContextProvider applicationContextProvider;
+
     
     public void start(MoquetteServer moquetteServer){
 
@@ -30,12 +35,9 @@ public class CenterSync {
 
         imqttClient.connect();
         imqttClient.subscribe("/sync/test");
-
-        logger.info("center:"+ bookMapper.findAll());
-
-
-        
-
+        SendThread st = new SendThread("center",applicationContextProvider);
+        new Thread(st).start();
+        //logger.info("center:"+ bookMapper.findAll());
         
     }
 

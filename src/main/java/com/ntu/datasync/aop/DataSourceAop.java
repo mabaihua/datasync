@@ -15,19 +15,19 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class DataSourceAop {
-    private static final Logger logger = LoggerFactory.getLogger(DataSourceAop.class);
-
-    //在primary方法前执行
-    @Before("execution(* com.ntu.datasync.sync.CenterSync.start(..))")
-    public void setDataSource2test01() {
-        logger.info("Center业务");
-        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Primary);
-    }
-
-    //在secondary方法前执行
-    @Before("execution(* com.ntu.datasync.sync.NodeSync.start(..))")
-    public void setDataSource2test02() {
-        logger.info("Node业务");
-        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Secondary);
-    }
+//    private static final Logger logger = LoggerFactory.getLogger(DataSourceAop.class);
+//
+//    //在primary方法前执行
+//    @Before("execution(* com.ntu.datasync.sync.CenterSync.start(..))")
+//    public void setDataSource2test01() {
+//        logger.info("Center业务");
+//        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Primary);
+//    }
+//
+//    //在secondary方法前执行
+//    @Before("execution(* com.ntu.datasync.sync.NodeSync.start(..))")
+//    public void setDataSource2test02() {
+//        logger.info("Node业务");
+//        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Secondary);
+//    }
 }

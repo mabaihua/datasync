@@ -37,7 +37,11 @@ public class ServerStart implements ApplicationListener<ContextRefreshedEvent> {
         }
 
         centerSync.start(moquetteServer);
-        nodeSync.start(moquetteServer);
+        try {
+            nodeSync.start(moquetteServer);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Runtime.getRuntime().addShutdownHook(new Thread(){
             @Override

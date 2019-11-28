@@ -1,5 +1,7 @@
 package com.ntu.datasync.sync;
 
+import com.ntu.datasync.common.ApplicationContextProvider;
+import com.ntu.datasync.config.DataSourceType;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.dao.BookMapper;
@@ -19,13 +21,18 @@ public class NodeSync {
     @Autowired
     BookMapper bookMapper;
 
-    public void start(MoquetteServer moquetteServer){
+    @Autowired
+    ApplicationContextProvider applicationContextProvider;
+
+    public void start(MoquetteServer moquetteServer) throws InterruptedException {
 
 
         SysConfig sysConfig = new SysConfig();
         IMQTTClient imqttClient = new EMQTTClient(sysConfig.getClintid(),sysConfig.getClintid(),sysConfig.getPassword());
         imqttClient.connect();
+        DataSourceType.setDataBaseType(DataSourceType.DataBaseType.Secondary);
         imqttClient.publish("/sync/test",bookMapper.findAll().toString().getBytes(),false);
-        logger.info("node: "+bookMapper.findAll());
+        SendThread st = new SendThread("node",applicationContextProvider);
+        new Thread(st).start();
     }
 }
