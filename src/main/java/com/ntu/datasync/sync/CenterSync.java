@@ -1,7 +1,6 @@
 package com.ntu.datasync.sync;
 
 import com.ntu.datasync.common.ApplicationContextProvider;
-import com.ntu.datasync.config.DataSourceType;
 import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.config.SysConfig;
 import com.ntu.datasync.dao.BookMapper;

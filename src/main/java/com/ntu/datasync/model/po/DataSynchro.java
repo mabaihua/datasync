@@ -23,7 +23,7 @@ public class DataSynchro implements Serializable {
     private Long sd1Num;
     private Date se1Time;
     private String sf1Msg;
-    private String sf2Status;
+    private String sa2Status;
     private Date sb2Time;
     private Date sc2Time;
     private String sf2Msg;
@@ -60,8 +60,8 @@ public class DataSynchro implements Serializable {
         this.sf1Msg = sf1Msg == null ? null : sf1Msg;
     }
 
-    public void setSf2Status(String sf2Status) {
-        this.sf2Status = sf2Status == null ? null : sf2Status;
+    public void setSa2Status(String sa2Status) {
+        this.sa2Status = sa2Status == null ? null : sa2Status;
     }
 
     public void setSb2Time(Date sb2Time) {

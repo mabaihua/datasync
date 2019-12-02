@@ -2,13 +2,10 @@ package com.ntu.datasync.sync;
 
 import com.ntu.datasync.common.ApplicationContextProvider;
 import com.ntu.datasync.config.DataSourceType;
-import com.ntu.datasync.config.MoquetteServer;
 import com.ntu.datasync.dao.BookMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author: baihua
