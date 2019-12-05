@@ -1,11 +1,16 @@
 package com.ntu.datasync.sync;
 
 import com.ntu.datasync.common.ApplicationContextProvider;
+import com.ntu.datasync.common.MsgSerializer;
 import com.ntu.datasync.config.DataSourceType;
-import com.ntu.datasync.dao.BookMapper;
+import com.ntu.datasync.config.SysConfig;
+import com.ntu.datasync.mapper.BookMapper;
+import com.ntu.datasync.model.SyncMessage;
+import com.ntu.datasync.model.po.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * @Author: baihua
@@ -16,12 +21,15 @@ public class SendThread implements Runnable {
 
     private ApplicationContextProvider applicationContextProvider;
 
-    @Autowired
-    String role;
+    private String role;
+    private SysConfig sysConfig;
+    private IMQTTClient imqttClient;
 
-    public SendThread(String role, ApplicationContextProvider context){
+    public SendThread(String role, ApplicationContextProvider context,IMQTTClient emqttClient){
         applicationContextProvider = context;
         this.role = role;
+        this.sysConfig = new SysConfig();
+        this.imqttClient = emqttClient;
 
     }
     @Override
@@ -34,12 +42,27 @@ public class SendThread implements Runnable {
         BookMapper bookMapper = (BookMapper) applicationContextProvider.getBean("bookMapper");
 
         while(true){
-            logger.info(role+bookMapper.findAll());
+            List<Book> books = bookMapper.findAll();
             try {
-                Thread.sleep(10000);
+                Thread.sleep(60000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            if(role.equals("center")){
+
+            }else{
+               // Processor processor = (Processor) applicationContextProvider.getBean("processor");
+                SyncMessage syncMessage = new SyncMessage();
+                syncMessage.setClientid(sysConfig.getClintid());
+                syncMessage.setMsgtype(1);
+                syncMessage.setData(books);
+                //String target  = processor.onSend(syncMessage);
+
+                byte[] message =new MsgSerializer().encode(syncMessage);
+
+                imqttClient.publish("/sync/test",message,true);
+            }
+
         }
     }
 }

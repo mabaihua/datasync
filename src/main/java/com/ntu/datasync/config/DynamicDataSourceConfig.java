@@ -21,7 +21,7 @@ import java.util.Map;
  * @Date: Created in 11/12/2019 3:45 PM
  */
 @Configuration
-@MapperScan(basePackages = "com.ntu.datasync.dao.bookMapper", sqlSessionFactoryRef = "SqlSessionFactory") //basePackages 我们接口文件的地址
+@MapperScan(basePackages = "com.ntu.datasync.mapper", sqlSessionFactoryRef = "SqlSessionFactory") //basePackages 我们接口文件的地址
 public class DynamicDataSourceConfig {
 
     // 将这个对象放入Spring容器中
@@ -64,7 +64,7 @@ public class DynamicDataSourceConfig {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dynamicDataSource);
         bean.setMapperLocations(
-                new PathMatchingResourcePatternResolver().getResources("classpath:/*.xml"));//设置我们的xml文件路径
+                new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));//设置我们的xml文件路径
         return bean.getObject();
     }
 }

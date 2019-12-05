@@ -1,4 +1,4 @@
-package com.ntu.datasync.dao;
+package com.ntu.datasync.mapper;
 
 import com.ntu.datasync.model.po.DataSynchro;
 import org.apache.ibatis.annotations.Mapper;

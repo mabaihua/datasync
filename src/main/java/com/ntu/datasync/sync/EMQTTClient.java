@@ -1,5 +1,6 @@
 package com.ntu.datasync.sync;
 
+import com.ntu.datasync.common.MsgSerializer;
 import com.ntu.datasync.config.SysConfig;
 import lombok.NoArgsConstructor;
 import org.eclipse.paho.client.mqttv3.*;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 
 /**
@@ -15,15 +17,16 @@ import org.springframework.stereotype.Repository;
  * @Date: Created in 11/11/2019 10:30 AM
  */
 @NoArgsConstructor
-@Component
+@Service
 public class EMQTTClient implements IMQTTClient {
     private static final Logger LOG = LoggerFactory.getLogger(EMQTTClient.class);
     private static final boolean CLEAN_START = true;
     private static final short KEEP_ALIVE = 30;
     private static final long RECONNECTION_DELAY = 5000;
 
+    private SysConfig sysConfig;
 
-    private SysConfig sysConfig = new SysConfig();
+
 
     private MqttClient mqttClient= null;
     private String clientid = null;
@@ -35,6 +38,7 @@ public class EMQTTClient implements IMQTTClient {
         this.clientid = clientid;
         this.password = password;
         this.username = username;
+        this.sysConfig = new SysConfig();
         try{
             mqttClient = new MqttClient(sysConfig.getServerurl(), clientid);
         } catch (MqttException e) {
@@ -92,7 +96,7 @@ public class EMQTTClient implements IMQTTClient {
             mm.setRetained(false);
             MqttDeliveryToken token = mt.publish(mm);
             token.waitForCompletion(3000);
-            LOG.info("MQTTServer Message Topic="+topicName+" Content: "+new String(message));
+            LOG.info("MQTTServer Message Topic="+topicName+" Content: "+new MsgSerializer().decode(message).getData());
         } catch (MqttPersistenceException e) {
             e.printStackTrace();
         } catch (MqttException e) {

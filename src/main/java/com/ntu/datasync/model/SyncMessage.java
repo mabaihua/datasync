@@ -19,7 +19,7 @@ public class SyncMessage implements Serializable {
 
     private static final long serialVersionUID = -6468546683623763722L;
     private String id = "";
-    private int msqtype = 0;
+    private int msgtype = 0;
     private String clientid = "";
     private DataSynchro dataSynchro;
     private Object data;
@@ -28,9 +28,9 @@ public class SyncMessage implements Serializable {
         id = UUID.randomUUID().toString();
     }
 
-    public SyncMessage(int msqtype, String clientid, DataSynchro dataSynchro, Object data){
+    public SyncMessage(int msgtype, String clientid, DataSynchro dataSynchro, Object data){
         this.clientid = clientid;
-        this.msqtype = msqtype;
+        this.msgtype = msgtype;
         this.dataSynchro = dataSynchro;
         this.data = data;
     }

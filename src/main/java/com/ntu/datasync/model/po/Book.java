@@ -8,8 +8,10 @@ package com.ntu.datasync.model.po;
 
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Book {
+public class Book implements Serializable {
 
     private Integer book_id;
     private String book_name;
